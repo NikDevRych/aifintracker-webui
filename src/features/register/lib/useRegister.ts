@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { RegisterFormValues } from "../model/schema";
+import { setToken } from "../../auth/lib/auth";
 
 export default function useRegister() {
   const [isLoading, setIsLoading] = useState(false);
@@ -15,6 +16,8 @@ export default function useRegister() {
         throw new Error("Invalid registration data");
       }
 
+      // set a fake token for demo purposes; replace with real token from API
+      setToken("demo-token");
       return { ok: true };
     } finally {
       setIsLoading(false);

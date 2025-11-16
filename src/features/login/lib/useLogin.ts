@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { LoginFormValues } from "../model/schema";
+import { setToken } from "../../auth/lib/auth";
 
 export default function useLogin() {
   const [isLoading, setIsLoading] = useState(false);
@@ -15,6 +16,8 @@ export default function useLogin() {
         throw new Error("Invalid credentials");
       }
 
+      // set a fake token for demo purposes; replace with real token from API
+      setToken("demo-token");
       return { ok: true };
     } finally {
       setIsLoading(false);
