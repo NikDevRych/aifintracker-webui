@@ -27,7 +27,7 @@ export default function LoginForm({ onSuccess }: { onSuccess?: () => void }) {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="mx-auto max-w-md rounded-md bg-white/80 p-6 shadow-sm dark:bg-gray-900/60"
+      className="mx-auto max-w-lg rounded-md bg-white p-6 shadow-sm dark:bg-gray-900 dark:text-gray-50"
     >
       <h2 className="mb-4 text-2xl font-semibold">Sign in</h2>
 
@@ -64,7 +64,7 @@ export default function LoginForm({ onSuccess }: { onSuccess?: () => void }) {
       <button
         type="submit"
         disabled={isSubmitting || isLoading}
-        className="w-full rounded-md bg-blue-600 py-2 text-white hover:bg-blue-700 disabled:opacity-60"
+        className="w-full rounded-md bg-blue-600 py-2 hover:bg-blue-700 disabled:opacity-60"
       >
         {isSubmitting || isLoading ? "Signing in..." : "Sign in"}
       </button>

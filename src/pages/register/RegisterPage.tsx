@@ -1,18 +1,17 @@
 import { useCallback } from "react";
-import LoginForm from "../../features/login/ui/LoginForm";
+import RegisterForm from "../../features/register/ui/RegisterForm";
 import { useNavigate } from "react-router";
 
-export default function LoginPage() {
+export default function RegisterPage() {
   const navigate = useNavigate();
 
   const handleSuccess = useCallback(() => {
-    // Navigate to dashboard after successful login
     navigate("/dashboard");
   }, [navigate]);
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-gray-50 p-6 dark:bg-gray-800">
-      <LoginForm onSuccess={handleSuccess} />
+      <RegisterForm onSuccess={handleSuccess} />
     </div>
   );
 }
