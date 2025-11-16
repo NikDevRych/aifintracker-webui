@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema, type LoginFormValues } from "../model/schema";
 import useLogin from "../lib/useLogin";
+import { Link } from "react-router";
 
 export default function LoginForm({ onSuccess }: { onSuccess?: () => void }) {
   const { login, isLoading } = useLogin();
@@ -68,6 +69,15 @@ export default function LoginForm({ onSuccess }: { onSuccess?: () => void }) {
       >
         {isSubmitting || isLoading ? "Signing in..." : "Sign in"}
       </button>
+
+      <div className="mt-3">
+        <Link
+          to="/register"
+          className="inline-block w-full rounded-md border border-gray-300 py-2 text-center text-sm text-gray-700 hover:bg-gray-50 dark:border-gray-700 dark:text-gray-50"
+        >
+          Create account
+        </Link>
+      </div>
     </form>
   );
 }
