@@ -1,6 +1,8 @@
 import { useState } from "react";
 import type { LoginFormValues } from "../model/schema";
-import { setToken } from "../../auth/lib/auth";
+import { setToken, setRefreshToken } from "../../auth/lib/auth";
+import { loginRequest } from "../api";
+import type { AuthResponse } from "../../../entities/token/types";
 
 export default function useLogin() {
   const [isLoading, setIsLoading] = useState(false);
@@ -8,16 +10,13 @@ export default function useLogin() {
   async function login(data: LoginFormValues) {
     setIsLoading(true);
     try {
-      // Replace with real API call. This is a stub for local dev/testing.
-      await new Promise((resolve) => setTimeout(resolve, 700));
+      const res: AuthResponse = await loginRequest(data);
+      // normalize keys: API returns { Token, RefreshToken } or { token, refreshToken }
+      const token = (res as any).token ?? (res as any).Token;
+      const refresh = (res as any).refreshToken ?? (res as any).RefreshToken;
+      if (token) setToken(token);
+      if (refresh) setRefreshToken(String(refresh));
 
-      // Basic simulated validation — remove when wiring real backend
-      if (!data.email.includes("@") || data.password.length < 6) {
-        throw new Error("Invalid credentials");
-      }
-
-      // set a fake token for demo purposes; replace with real token from API
-      setToken("demo-token");
       return { ok: true };
     } finally {
       setIsLoading(false);
