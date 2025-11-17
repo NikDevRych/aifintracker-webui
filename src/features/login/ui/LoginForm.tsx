@@ -19,9 +19,6 @@ export default function LoginForm({ onSuccess }: { onSuccess?: () => void }) {
       onSuccess?.();
     } catch (err) {
       console.error(err);
-      const message = (err as Error)?.message ?? "Login failed";
-      // Simple feedback for now; replace with toast/inline error handling as needed
-      alert(message);
     }
   };
 

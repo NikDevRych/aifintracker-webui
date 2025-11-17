@@ -1,5 +1,5 @@
-import type { LoginFormValues } from "./model/schema";
-import type { AuthResponse } from "../../entities/token/types";
+import type { LoginFormValues } from "../model/schema";
+import type { AuthResponse } from "../../../entities/token/types";
 
 const BASE = "http://localhost:5062";
 

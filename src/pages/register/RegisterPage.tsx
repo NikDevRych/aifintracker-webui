@@ -6,7 +6,7 @@ export default function RegisterPage() {
   const navigate = useNavigate();
 
   const handleSuccess = useCallback(() => {
-    navigate("/dashboard");
+    navigate("/");
   }, [navigate]);
 
   return (

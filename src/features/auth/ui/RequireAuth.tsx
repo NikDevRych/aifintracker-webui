@@ -9,18 +9,16 @@ export default function RequireAuth({ children }: { children: ReactNode }) {
   const [ok, setOk] = useState(false);
 
   useEffect(() => {
-    let mounted = true;
-    (async () => {
+    const checkToken = async () => {
       try {
         const valid = await verifyToken();
-        if (mounted) setOk(valid);
+        setOk(valid);
       } finally {
-        if (mounted) setChecking(false);
+        setChecking(false);
       }
-    })();
-    return () => {
-      mounted = false;
     };
+
+    checkToken();
   }, []);
 
   if (checking) return null;

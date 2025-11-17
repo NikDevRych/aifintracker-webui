@@ -1,5 +1,4 @@
 import { refreshRequest } from "../api";
-import type { AuthResponse } from "../../../entities/token/types";
 
 const TOKEN_KEY = "aifin.token";
 const REFRESH_KEY = "aifin.refresh";
@@ -75,16 +74,14 @@ export async function verifyToken(): Promise<boolean> {
     }
 
     try {
-      const res: AuthResponse = await refreshRequest(refresh);
+      const res = await refreshRequest(refresh);
       if (!res) {
         clearToken();
         return false;
       }
 
-      const newToken = (res as any).token ?? (res as any).Token;
-      const newRefresh = (res as any).refreshToken ?? (res as any).RefreshToken;
-      if (newToken) setToken(newToken);
-      if (newRefresh) setRefreshToken(String(newRefresh));
+      if (res.token) setToken(res.token);
+      if (res.refreshToken) setRefreshToken(String(res.refreshToken));
 
       return Boolean(getToken());
     } catch {
@@ -95,8 +92,4 @@ export async function verifyToken(): Promise<boolean> {
 
   // If token is not a JWT, assume it exists and is valid
   return true;
-}
-
-export function isAuthenticated(): boolean {
-  return Boolean(getToken());
 }

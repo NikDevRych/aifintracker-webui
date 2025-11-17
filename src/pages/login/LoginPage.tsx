@@ -6,8 +6,7 @@ export default function LoginPage() {
   const navigate = useNavigate();
 
   const handleSuccess = useCallback(() => {
-    // Navigate to dashboard after successful login
-    navigate("/dashboard");
+    navigate("/");
   }, [navigate]);
 
   return (
